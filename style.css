@@ -1,0 +1,805 @@
+/* FONT  */
+@font-face {
+  font-family: "Roboto";
+  src: url(./font/Roboto-Regular.ttf) format("ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url(./font/Roboto-Medium.ttf) format("ttf");
+  font-weight: 500;
+}
+/* VAR */
+
+:root {
+  /* COLOR */
+  --Primary: #1b4f72;
+  --Secondary: #2e86c1;
+  --Sfondi: #d6eaf8;
+  --CTA: #f0a830;
+  --Background: #ffffff;
+  --Text: #5f5e5a;
+  --Generale: #1a1a1a;
+  /* FONT */
+  --Font-XL: 2.25rem;
+  --Font-L: 1.5rem;
+  --Font-M: 1.25rem;
+  --Font-Base: 1rem;
+  --Font-S: 0.875rem;
+}
+
+/* RESET */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Roboto, sans-serif";
+  font-size: var(--Font-Base);
+  line-height: 1.6;
+  color: var(--Text);
+  background-color: var(--Background);
+  padding-top: 4rem;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+}
+p {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+ul,
+ol {
+  list-style: none;
+}
+video {
+  pointer-events: none;
+}
+
+/* MOBILE FIRST */
+
+/* ANIMAZIONI */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* NAV BAR */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* position: relative; */
+  position: fixed;
+  height: 4rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--Primary);
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navbar-brand {
+  color: var(--Background);
+  font-size: var(--Font-M);
+  font-weight: 600;
+  transition: all 0.3s ease-in;
+  animation: slideFromLeft 1.5s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* NAV BTN + CSS NAVBAR MENU */
+
+.navbar-menu {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.navbar-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--Primary);
+  background-color: var(--Sfondi);
+  font-size: var(--Font-M);
+  font-weight: 500;
+}
+
+.navbar-menu.active {
+  visibility: visible;
+  opacity: 1;
+}
+.navbar-menu ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.navbar-menu.active li.navbar-item:not(:last-child) .navbar-link {
+  border-bottom: 1px solid var(--Primary);
+}
+
+.navbar-toggle {
+  background: none;
+  border: none;
+  color: var(--Generale);
+  font-size: var(--Font-M);
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.navbar-toggle.open {
+  transform: rotate(180deg);
+}
+
+/* Effetto Opaco OVERLAY*/
+
+.navbar-overlay {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 998;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+.navbar-overlay.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* EFFETTI HOVER NAV BAR */
+
+.navbar-brand:hover {
+  color: var(--CTA);
+  transform: scale(1.1);
+}
+.navbar-link:hover {
+  color: var(--CTA);
+}
+
+/* HERO SECTION */
+
+#hero-section {
+  min-height: 100vh;
+  background-color: var(--Sfondi);
+}
+.hero-container {
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+.hero-text-container {
+  padding: 1rem;
+}
+.hero-text-container h1 {
+  opacity: 0;
+  color: var(--Primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 0.5s;
+}
+.hero-text-container p {
+  opacity: 0;
+  color: var(--Text);
+  font-size: var(--Font-Base);
+  font-weight: 500;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 0.7s;
+}
+
+.hero-media {
+  margin: 1rem 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.hero-media video {
+  display: block;
+  object-fit: cover;
+  width: 90vw;
+  height: 40vh;
+}
+.hero-cta-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1.25rem;
+}
+.hero-cta {
+  opacity: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--Font-Base);
+  border-radius: 25px;
+  padding: 0.7rem 3.41rem;
+  transition:
+    background-color 0.3s ease,
+    all 0.3s ease;
+  animation: fadeIn 1.2s ease forwards;
+}
+.hero-cta.principale {
+  background-color: var(--Primary);
+  color: var(--Background);
+  animation-delay: 1.5s;
+}
+.hero-cta:not(.principale) {
+  background-color: transparent;
+  color: var(--Primary);
+  border: 2px solid var(--Primary);
+  animation-delay: 2.3s;
+}
+.hero-cta a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+/* EFFETTI HOVER HERO */
+
+.hero-cta:hover {
+  background-color: var(--CTA);
+  transform: scale(1.1);
+}
+
+/* ABOUT SECTION */
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.5rem 1rem;
+}
+.about-text {
+  padding: 2rem 0;
+}
+.about-text h2 {
+  font-size: var(--Font-M);
+  color: var(--Secondary);
+}
+.about-text h3 {
+  font-size: var(--Font-L);
+  color: var(--Primary);
+}
+.about-image img {
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.about-text.bottom p {
+  padding: 0.5rem 0;
+}
+.about-text.bottom blockquote {
+  border-left: 3px solid var(--Secondary);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+/* SERVIZI SECTION */
+
+#servizi {
+  margin-top: 3rem;
+  background-color: var(--Sfondi);
+}
+.servizi-container {
+  padding: 1rem 1.5rem;
+}
+.servizi-text h2 {
+  color: var(--Secondary);
+  font-size: var(--Font-M);
+}
+.servizi-text h3 {
+  color: var(--Primary);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+}
+
+.item-servizi {
+  text-align: center;
+  background-color: var(--Primary);
+  margin: 1rem;
+  padding: 0.5rem;
+  color: var(--Background);
+  border-radius: 8px;
+  font-size: var(--Font-Base);
+  border: 2px solid var(--CTA);
+  transition: all 0.5s ease-in-out;
+}
+
+/* EFFETTI HOVER SERVIZI */
+
+.item-servizi:hover {
+  scale: 1.1;
+}
+
+/* REFERRAL SECTION */
+
+#referral {
+  margin-top: 3rem;
+}
+.referral-text {
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.referral-text h2 {
+  font-size: var(--Font-M);
+  color: var(--Secondary);
+}
+.referral-text h3 {
+  color: var(--Primary);
+  font-size: var(--Font-L);
+}
+.referral-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  gap: 1.5rem;
+}
+.item-referral {
+  background-color: var(--Sfondi);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  max-width: 500px;
+  min-height: 200px;
+  transition: all 0.5s ease-in-out;
+}
+.item-referral h4 {
+  font-size: var(--Font-Base);
+  color: var(--Primary);
+}
+.emoji-star {
+  color: var(--CTA);
+}
+
+/* CONTATTI SECTION */
+
+#contact {
+  background-color: var(--Sfondi);
+  margin-top: 3rem;
+}
+.contact-text:not(.social) {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+.contact-text h2,
+.list-social h2 {
+  color: var(--Secondary);
+  font-size: var(--Font-M);
+}
+.contact-text h3 {
+  color: var(--Primary);
+  font-size: var(--Font-L);
+}
+.contact-text.social {
+  text-align: center;
+}
+.contact-link address {
+  margin-top: 1.5rem;
+}
+.contact-link address a {
+  text-decoration: underline;
+}
+.contact-link {
+  padding: 2rem;
+  gap: 1.5rem;
+}
+.font-weight {
+  font-weight: 600;
+  color: var(--Generale);
+}
+.cta-footer {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Primary);
+  color: var(--Background);
+  border-radius: 25px;
+  transition:
+    background-color 0.3s ease,
+    scale 0.3s ease;
+}
+.contact-text.social {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+.list-social ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+.list-social img {
+  border-radius: 8px;
+}
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  min-height: 40vh;
+}
+.list-social img {
+  transition: scale 0.2s ease;
+}
+
+/* EFFETTI HOVER CONTACT */
+
+.cta-footer:hover {
+  background-color: var(--CTA);
+}
+.list-social img:hover {
+  background-color: var(--CTA);
+  scale: 1.2;
+}
+
+/* FOOTER */
+
+.footer-container {
+  background-color: var(--Primary);
+  padding: 1rem 2rem;
+  color: var(--Background);
+}
+.footer-container a {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE INTERMEDIO */
+
+@media (min-width: 530px) {
+  video {
+    aspect-ratio: 9/16;
+    max-width: 70vw;
+  }
+  img {
+    aspect-ratio: 1/1;
+    max-width: 50vw;
+  }
+}
+/* TABLET 768px */
+
+@media (min-width: 768px) {
+  /* NAV */
+  .navbar-toggle {
+    display: none;
+  }
+  .navbar-menu {
+    visibility: visible;
+    opacity: 1;
+    position: static;
+    width: auto;
+    height: auto;
+    top: initial;
+  }
+  .navbar-menu ul {
+    display: flex;
+    flex-direction: row;
+  }
+  .navbar-link {
+    background-color: inherit;
+    color: var(--Background);
+    transition: all 0.3s ease-in-out;
+  }
+  .navbar-link:hover {
+    scale: 1.1;
+  }
+  /* HERO SECTION */
+
+  #hero-section {
+    min-height: 80vh;
+  }
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    min-height: 60vh;
+    gap: 1.2rem;
+  }
+  .hero-media {
+    grid-column: 2;
+    grid-row: span 2;
+    align-self: center;
+  }
+  .hero-media video {
+    display: block;
+    height: 60vh;
+    max-width: 60vw;
+    object-position: left center;
+    border-radius: 20px;
+  }
+  .hero-text-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-cta-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-cta {
+    padding: 1rem 2rem;
+  }
+  /* ABOUT SECTION */
+
+  .about-image img {
+    max-height: 80%;
+    max-width: 350px;
+  }
+  .about-container {
+    margin-top: 2.6rem;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .about-container-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  /* SERVIZI SECTION */
+
+  #servizi {
+    margin-top: 2rem;
+  }
+  .servizi-container {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+  }
+  .servizi-text h2 {
+    font-size: var(--Font-M);
+  }
+  .servizi-text h3 {
+    font-size: 1.5rem;
+  }
+  .servizi-list ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1em;
+  }
+  .item-servizi {
+    display: flex;
+    padding: 1rem;
+    font-size: var(--Font-M);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    max-width: 70%;
+  }
+
+  /* SECTION CONTATTI */
+  #contact {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+  }
+  .cta-footer {
+    min-width: 300px;
+  }
+
+  /* FOOTER */
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* DESKTOP 1024px */
+
+@media (min-width: 1024px) {
+  /* ABOUT SECTION */
+
+  .about-text {
+    padding: 2rem 2.5rem;
+  }
+  .about-container-wrapper {
+    padding: 2rem;
+  }
+  .about-text.bottom {
+    font-size: var(--Font-M);
+  }
+  .about-image img {
+    max-width: 100%;
+  }
+
+  /* SERVIZI SECTION */
+
+  .servizi-container {
+    padding: 2rem 4rem;
+  }
+  .servizi-text h2 {
+    font-size: var(--Font-M);
+  }
+  .servizi-text h3 {
+    font-size: var(--Font-L);
+  }
+  .servizi-list {
+    justify-content: center;
+    align-items: center;
+  }
+  .servizi-list ul {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5rem;
+  }
+  .item-servizi {
+    font-size: var(--Font-Base);
+  }
+
+  /* REFERRAL SECTION */
+
+  .referral-text {
+    padding: 2rem 4rem;
+  }
+  .referral-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 20vh;
+    padding: 2rem 3rem;
+  }
+  #contact {
+    background-color: var(--Background);
+  }
+  .contact-container,
+  .list-social {
+    background-color: var(--Sfondi);
+    min-height: 400px;
+    min-width: 400px;
+    border-radius: 8px;
+  }
+  .contact-text {
+    gap: 2rem;
+  }
+  .list-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .list-social ul {
+    gap: 2rem;
+  }
+}
+
+/* DESKTOP 1200px */
+
+@media (min-width: 1200px) {
+  /* HERO SECTION */
+
+  #hero-section {
+    min-height: 90vh;
+  }
+  .hero-text-container h1 {
+    font-size: var(--Font-XL);
+  }
+  .hero-text-container p {
+    font-size: var(--Font-M);
+    max-width: 35ch;
+  }
+  .hero-media video {
+    height: 80vh;
+    object-position: center 40%;
+  }
+  .hero-cta {
+    padding: 1rem 3.5rem;
+    font-size: var(--Font-M);
+  }
+  /* ABOUT SECTION */
+
+  .about-container {
+    background-color: var(--Sfondi);
+    margin: 4rem 10rem;
+    align-items: stretch;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .about-text h2 {
+    font-size: var(--Font-M);
+  }
+  .about-text h3 {
+    font-size: var(--Font-XL);
+  }
+  .about-text p {
+    font-size: var(--Font-M);
+  }
+  .about-text:not(.bottom) {
+    padding: 2rem;
+  }
+  .about-image {
+    height: 100%;
+  }
+  .about-image img {
+    margin-left: 1rem;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+  }
+  .about-text.bottom {
+    margin-right: 2rem;
+    padding: 2rem;
+  }
+  .about-text.bottom p {
+    padding-bottom: 1rem;
+  }
+  .about-text.bottom blockquote {
+    font-size: var(--Font-M);
+  }
+  /* SERVIZI SECTION */
+  .servizi-container {
+    min-height: 50vh;
+  }
+  .item-servizi {
+    font-size: var(--Font-M);
+  }
+}
