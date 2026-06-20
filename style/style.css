@@ -467,8 +467,8 @@ video {
 }
 .cta-footer {
   position: fixed;
-  bottom: 8%;
-  left: 83%;
+  bottom: 2%;
+  left: 82%;
   display: flex;
   justify-content: center;
   align-items: center;
